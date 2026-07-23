@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Kodachadri Trek 2026 | 3 Days &middot; Trek &middot; Waterfalls &middot; Memories</title>
-<meta name="description" content="Kodachadri Trek 2026 — a 3 day trekking trip from Kanakapura to the Kodachadri peak and Hidlumane Falls, 1–3 August 2026. Itinerary, budget, stay and trek guide for 12 members.">
+<meta name="description" content="Kodachadri Trek 2026 — a 3 day trekking trip from Kanakapura to the Kodachadri peak and Hidlumane Falls, 31 July – 2 August 2026. Itinerary, budget, stay and trek guide for 17 members.">
 <meta name="theme-color" content="#173C2E">
 
 <!-- Open Graph -->
 <meta property="og:title" content="Kodachadri Trek 2026">
-<meta property="og:description" content="3 Days Adventure • Trek • Waterfalls • Memories — 1–3 August 2026, starting from Kanakapura.">
+<meta property="og:description" content="3 Days Adventure • Trek • Waterfalls • Memories — 31 July – 2 August 2026, starting from Kanakapura.">
 <meta property="og:type" content="website">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23173C2E'/%3E%3Cpath d='M10 72 L38 34 L52 54 L64 30 L92 72 Z' fill='%23F1E7D0'/%3E%3C/svg%3E">
@@ -114,6 +114,37 @@ section{position:relative;}
 .btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible{
   outline:3px solid var(--amber); outline-offset:3px;
 }
+.btn{position:relative; overflow:hidden;}
+.btn .ripple{position:absolute; border-radius:50%; transform:scale(0); background:rgba(255,255,255,0.55); pointer-events:none; animation:rippleGrow .65s var(--ease) forwards;}
+.btn-outline .ripple{background:rgba(30,90,62,0.25);}
+@keyframes rippleGrow{to{transform:scale(2.6); opacity:0;}}
+
+/* ============ TILT / MAGNETIC UTILITIES ============ */
+.tilt-card{will-change:transform; position:relative;}
+.tilt-card::after{content:''; position:absolute; inset:0; border-radius:inherit; background:radial-gradient(circle at var(--gx,50%) var(--gy,50%), rgba(255,255,255,0.35), transparent 60%); opacity:0; transition:opacity .35s var(--ease); pointer-events:none;}
+.tilt-card:hover::after{opacity:1;}
+[data-theme="dark"] .tilt-card::after{background:radial-gradient(circle at var(--gx,50%) var(--gy,50%), rgba(255,255,255,0.14), transparent 60%);}
+
+/* ============ HERO AMBIENT FIREFLIES ============ */
+#firefly-field{position:absolute; inset:0; z-index:3; pointer-events:none; overflow:hidden;}
+.firefly{position:absolute; width:4px; height:4px; border-radius:50%; background:var(--amber-soft); box-shadow:0 0 8px 2px rgba(231,185,120,0.9); opacity:0; pointer-events:none; animation:fireflyFloat linear infinite;}
+@keyframes fireflyFloat{
+  0%{opacity:0; transform:translate(0,0) scale(0.6);}
+  10%{opacity:0.9;}
+  50%{transform:translate(var(--fx,30px),-140px) scale(1);}
+  90%{opacity:0.7;}
+  100%{opacity:0; transform:translate(calc(var(--fx,30px)*1.6),-260px) scale(0.5);}
+}
+.cursor-glow{position:absolute; width:340px; height:340px; border-radius:50%; pointer-events:none; z-index:4;
+  background:radial-gradient(circle, rgba(255,222,158,0.16), transparent 70%); transform:translate(-50%,-50%);
+  opacity:0; transition:opacity .4s var(--ease); left:0; top:0;}
+#hero:hover .cursor-glow{opacity:1;}
+
+/* ============ CONFETTI ============ */
+.confetti-piece{position:fixed; top:-10px; width:8px; height:14px; z-index:1200; pointer-events:none; animation:confettiFall linear forwards; border-radius:2px;}
+@keyframes confettiFall{
+  to{transform:translateY(105vh) rotate(600deg); opacity:0.9;}
+}
 
 /* ============ SCROLL PROGRESS ============ */
 #progress-bar{position:fixed; top:0; left:0; height:3px; width:0%; background:linear-gradient(90deg,var(--amber),var(--forest-mid)); z-index:1000; transition:width .1s linear;}
@@ -165,13 +196,19 @@ section{position:relative;}
   min-height:100vh; display:flex; align-items:flex-end; position:relative; overflow:hidden;
   background:linear-gradient(180deg,#0B2A45 0%, #1A4A5C 32%, #2F6B62 62%, #4F8564 100%);
 }
-#hero .sky-glow{position:absolute; top:-10%; right:8%; width:340px; height:340px; border-radius:50%;
+.hero-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 40%; z-index:0;}
+.hero-overlay{position:absolute; inset:0; z-index:1;
+  background:
+    linear-gradient(180deg, rgba(11,42,69,0.55) 0%, rgba(20,52,50,0.45) 35%, rgba(15,46,32,0.55) 70%, rgba(9,26,19,0.88) 100%),
+    linear-gradient(0deg, rgba(9,26,19,0.5) 0%, rgba(9,26,19,0) 45%);
+}
+#hero .sky-glow{position:absolute; top:-10%; right:8%; width:340px; height:340px; border-radius:50%; z-index:2;
   background:radial-gradient(circle at 40% 40%, rgba(255,222,158,0.85), rgba(255,222,158,0) 70%); filter:blur(4px);}
-.mist{position:absolute; left:0; right:0; height:220px; bottom:22%;
+.mist{position:absolute; left:0; right:0; height:220px; bottom:22%; z-index:2;
   background:linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.14) 100%); mix-blend-mode:screen;
   animation:drift 22s linear infinite;}
 @keyframes drift{0%{transform:translateX(-6%);}50%{transform:translateX(4%);}100%{transform:translateX(-6%);}}
-.ridge{position:absolute; left:-5%; width:110%; bottom:0;}
+.ridge{position:absolute; left:-5%; width:110%; bottom:0; z-index:2;}
 .ridge svg{width:100%; height:auto; display:block;}
 #hero-content{position:relative; z-index:5; width:100%; padding-bottom:70px;}
 .hero-badge{
@@ -211,7 +248,11 @@ section{position:relative;}
 .reveal{opacity:0; transform:translateY(34px); transition:opacity .8s var(--ease), transform .8s var(--ease);}
 .reveal.in{opacity:1; transform:translateY(0);}
 .reveal-stagger.in .r-child{opacity:1; transform:translateY(0);}
-.r-child{opacity:0; transform:translateY(24px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+.r-child{opacity:0; transform:translateY(24px); transition:opacity .6s var(--ease), transform .6s var(--ease);}
+.r-child:nth-child(1){transition-delay:.02s;} .r-child:nth-child(2){transition-delay:.08s;}
+.r-child:nth-child(3){transition-delay:.14s;} .r-child:nth-child(4){transition-delay:.2s;}
+.r-child:nth-child(5){transition-delay:.26s;} .r-child:nth-child(6){transition-delay:.32s;}
+.r-child:nth-child(7){transition-delay:.38s;} .r-child:nth-child(8){transition-delay:.44s;}
 
 /* ============ OVERVIEW ============ */
 #overview{padding:120px 0 90px; background:var(--bg);}
@@ -229,9 +270,8 @@ section{position:relative;}
 
 /* ============ ITINERARY / TRAIL ============ */
 #itinerary{padding:100px 0; background:var(--surface);}
-.trail-wrap{position:relative; margin-top:20px;}
+.trail-wrap{position:relative; margin-top:20px; max-width:760px; margin-left:auto; margin-right:auto;}
 .trail-line{position:absolute; left:29px; top:14px; bottom:14px; width:2px; background:repeating-linear-gradient(180deg, var(--forest-mid) 0 10px, transparent 10px 18px);}
-@media(min-width:900px){.trail-line{left:50%; transform:translateX(-50%);}}
 .day-block{margin-bottom:56px;}
 .day-head{display:flex; align-items:center; gap:18px; margin-bottom:26px; position:relative; z-index:2;}
 .day-badge{
@@ -242,18 +282,12 @@ section{position:relative;}
 .day-badge span{font-size:0.55rem; text-transform:uppercase; letter-spacing:0.06em;}
 .day-head h3{font-size:1.5rem;}
 .day-head p{color:var(--text-soft); font-size:0.88rem; margin-top:2px;}
-.stops{display:grid; gap:16px; margin-left:76px;}
-@media(min-width:900px){
-  .stops{margin-left:0; grid-template-columns:1fr 1fr; gap:16px 60px;}
-  .day-block:nth-child(even) .day-head{flex-direction:row-reverse; text-align:right; justify-content:flex-end;}
-  .day-block:nth-child(even) .stops{direction:rtl;}
-  .day-block:nth-child(even) .stops .stop{direction:ltr;}
-}
+.stops{display:grid; gap:14px; margin-left:76px;}
 .stop{
   background:var(--bg); border:1px solid var(--line); border-radius:var(--radius-sm); padding:16px 18px;
   display:flex; gap:12px; align-items:flex-start; transition:transform .3s var(--ease), box-shadow .3s var(--ease);
 }
-.stop:hover{transform:translateY(-3px); box-shadow:var(--shadow-card);}
+.stop:hover{transform:translateY(-3px) translateX(4px); box-shadow:var(--shadow-card); border-color:var(--forest-mid);}
 .stop .stop-ic{width:30px; height:30px; border-radius:8px; background:var(--mtn-blue); color:#fff; display:flex; align-items:center; justify-content:center; flex-shrink:0;}
 .stop p{font-size:0.9rem; font-weight:500;}
 .stop small{display:block; color:var(--text-soft); font-size:0.76rem; margin-top:2px; font-weight:400;}
@@ -266,7 +300,8 @@ section{position:relative;}
   box-shadow:var(--shadow-card); transition:transform .4s var(--ease), box-shadow .4s var(--ease); display:flex; flex-direction:column;
 }
 .dest-card:hover{transform:translateY(-8px); box-shadow:var(--shadow-soft);}
-.dest-visual{height:120px; position:relative; display:flex; align-items:center; justify-content:center; color:#fff;}
+.dest-visual{height:160px; position:relative; display:flex; align-items:center; justify-content:center; color:#fff; overflow:hidden;}
+.dest-visual img{width:100%; height:100%; object-fit:cover; display:block;}
 .dest-visual svg{width:46px; height:46px; opacity:0.95;}
 .dest-body{padding:18px 18px 20px; flex:1; display:flex; flex-direction:column;}
 .dest-body h4{font-size:1.02rem; margin-bottom:8px;}
@@ -281,7 +316,7 @@ section{position:relative;}
 .stay-card{
   background:var(--bg); border-radius:var(--radius-lg); padding:32px; border:1px solid var(--line); box-shadow:var(--shadow-card);
 }
-.stay-card .homestay-visual{height:150px; border-radius:var(--radius-md); background:linear-gradient(135deg,var(--forest),var(--mtn-blue)); margin-bottom:22px; display:flex; align-items:center; justify-content:center; color:var(--beige);}
+.stay-card .homestay-visual{height:150px; border-radius:var(--radius-md); background:linear-gradient(135deg,var(--forest),var(--mtn-blue)); margin-bottom:22px; display:flex; align-items:center; justify-content:center; color:var(--beige); overflow:hidden;}
 .stay-card h3{font-size:1.35rem; margin-bottom:6px;}
 .stay-card .price-tag{font-family:var(--mono); font-size:1.7rem; color:var(--amber); font-weight:700; margin:14px 0 4px;}
 [data-theme="dark"] .stay-card .price-tag{color:var(--amber-soft);}
@@ -303,10 +338,10 @@ section{position:relative;}
   display:grid; grid-template-columns:1fr 1fr; gap:0; background:var(--surface); border-radius:var(--radius-lg);
   border:1px solid var(--line); box-shadow:var(--shadow-soft); overflow:hidden;
 }
-.vehicle-select{padding:36px; border-right:1px solid var(--line);}
-.vehicle-select h4{font-size:1.05rem; margin-bottom:18px;}
+.vehicle-select{padding:40px; border-right:1px solid var(--line);}
+.vehicle-select h4{font-size:1.05rem; margin-bottom:20px;}
 .v-option{
-  display:flex; align-items:center; justify-content:space-between; gap:12px; padding:15px 16px; border:1.5px solid var(--line);
+  display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px 18px; border:1.5px solid var(--line);
   border-radius:var(--radius-sm); margin-bottom:10px; cursor:pointer; transition:.3s var(--ease); background:var(--bg);
 }
 .v-option:hover{border-color:var(--forest-mid);}
@@ -314,19 +349,26 @@ section{position:relative;}
 .v-option.disabled{opacity:0.5; cursor:not-allowed;}
 .v-option .v-name{font-weight:600; font-size:0.92rem;}
 .v-option .v-remark{font-size:0.72rem; color:var(--text-soft); margin-top:2px;}
-.v-option .v-rate{font-family:var(--mono); font-size:0.78rem; color:var(--text-soft);}
+.v-option .v-rate{font-family:var(--mono); font-size:0.78rem; color:var(--text-soft); text-align:right; line-height:1.5;}
 .v-radio{width:18px; height:18px; border-radius:50%; border:2px solid var(--line); flex-shrink:0; position:relative;}
 .v-option.selected .v-radio{border-color:var(--forest);}
 .v-option.selected .v-radio::after{content:''; position:absolute; inset:3px; border-radius:50%; background:var(--forest);}
-.budget-result{padding:36px; background:linear-gradient(160deg, var(--forest-deep), var(--forest));}
+.budget-result{padding:40px; background:linear-gradient(160deg, var(--forest-deep), var(--forest));}
 .budget-result h4{color:var(--beige); font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; font-family:var(--mono); opacity:0.8;}
 .result-total{font-family:var(--mono); font-size:3rem; color:var(--beige); font-weight:700; margin:10px 0 2px; line-height:1;}
-.result-sub{color:rgba(241,231,208,0.7); font-size:0.82rem; margin-bottom:24px;}
-.breakdown-list{list-style:none; margin:0; padding:0; display:grid; gap:9px;}
-.breakdown-list li{display:flex; justify-content:space-between; font-size:0.84rem; color:rgba(241,231,208,0.85); padding-bottom:9px; border-bottom:1px dashed rgba(241,231,208,0.2);}
-.breakdown-list li b{font-family:var(--mono); color:var(--beige);}
-.breakdown-list li.grand{border-bottom:none; padding-top:6px; font-size:0.95rem;}
-.breakdown-list li.grand b{color:var(--amber-soft); font-size:1.05rem;}
+.result-sub{color:rgba(241,231,208,0.7); font-size:0.82rem; margin-bottom:28px; padding-bottom:22px; border-bottom:1px solid rgba(241,231,208,0.15);}
+.breakdown-list{list-style:none; margin:0; padding:0; display:grid; gap:8px;}
+.breakdown-list li{display:flex; justify-content:space-between; gap:10px; font-size:0.84rem; color:rgba(241,231,208,0.85); padding:8px 0; border-bottom:1px dashed rgba(241,231,208,0.15);}
+.breakdown-list li b{font-family:var(--mono); color:var(--beige); font-weight:700; white-space:nowrap;}
+.breakdown-list li.cat{border-bottom:none; padding:14px 0 4px; font-family:var(--mono); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--amber-soft); opacity:0.85; font-weight:700;}
+.breakdown-list li.cat:first-child{padding-top:0;}
+.breakdown-list li.subtotal{border-bottom:1px solid rgba(241,231,208,0.22); font-weight:600; color:var(--beige);}
+.breakdown-list li.grand{
+  border-bottom:none; margin-top:10px; padding:16px 18px; font-size:0.95rem; align-items:center;
+  background:rgba(241,231,208,0.08); border:1px solid rgba(241,231,208,0.18); border-radius:var(--radius-sm);
+}
+.breakdown-list li.grand span{font-family:var(--mono); font-size:0.68rem; text-transform:uppercase; letter-spacing:0.08em; color:rgba(241,231,208,0.75);}
+.breakdown-list li.grand b{color:var(--amber-soft); font-size:1.3rem;}
 .budget-actions{display:flex; gap:12px; margin-top:26px; flex-wrap:wrap;}
 .budget-actions .btn{padding:11px 20px; font-size:0.82rem;}
 .warn-note{margin-top:14px; font-size:0.8rem; color:#E9A94B; display:flex; gap:8px; align-items:flex-start;}
@@ -351,18 +393,6 @@ section{position:relative;}
 .pack-item span{font-size:0.9rem;}
 .pack-item.checked span{text-decoration:line-through; color:var(--text-soft);}
 
-/* ============ GALLERY ============ */
-#gallery{padding:100px 0; background:var(--bg);}
-.masonry{column-count:4; column-gap:16px;}
-.g-item{break-inside:avoid; margin-bottom:16px; border-radius:var(--radius-md); overflow:hidden; position:relative; cursor:pointer; box-shadow:var(--shadow-card);}
-.g-item img{width:100%; display:block; transition:transform .5s var(--ease);}
-.g-item:hover img{transform:scale(1.06);}
-.g-cap{position:absolute; left:0; right:0; bottom:0; padding:14px 16px 12px; background:linear-gradient(180deg, transparent, rgba(15,46,32,0.85)); color:var(--beige); font-size:0.78rem; font-weight:600;}
-#lightbox{position:fixed; inset:0; background:rgba(10,20,14,0.92); display:none; align-items:center; justify-content:center; z-index:1100; padding:30px;}
-#lightbox.open{display:flex;}
-#lightbox img{max-width:min(90vw,780px); max-height:80vh; border-radius:14px;}
-#lightbox .lb-cap{color:var(--beige); text-align:center; margin-top:16px; font-family:var(--mono); font-size:0.85rem;}
-#lb-close{position:absolute; top:26px; right:30px; color:var(--beige); background:none; border:none; cursor:pointer;}
 
 /* ============ FAQ ============ */
 #faq{padding:100px 0; background:var(--surface);}
@@ -402,7 +432,7 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
 #back-to-top:hover, #wa-float:hover{transform:translateY(-4px);}
 
 @media print{
-  #navbar, .mobile-drawer, #scrim, #back-to-top, #wa-float, #progress-bar, #gallery, #hero .scroll-cue, .btn-primary, #lightbox{display:none !important;}
+  #navbar, .mobile-drawer, #scrim, #back-to-top, #wa-float, #progress-bar, #hero .scroll-cue, .btn-primary{display:none !important;}
   body{background:#fff; color:#000;}
 }
 
@@ -414,7 +444,6 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
   .budget-panel{grid-template-columns:1fr;}
   .vehicle-select{border-right:none; border-bottom:1px solid var(--line);}
   .guide-grid{grid-template-columns:1fr;}
-  .masonry{column-count:3;}
   .contact-grid{grid-template-columns:1fr 1fr;}
 }
 @media (max-width:760px){
@@ -422,17 +451,13 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
   #menu-toggle{display:block;}
   .stat-grid{grid-template-columns:1fr 1fr;}
   .dest-grid{grid-template-columns:1fr 1fr;}
-  .masonry{column-count:2;}
   .contact-grid{grid-template-columns:1fr;}
-  .day-block:nth-child(even) .day-head{flex-direction:row; text-align:left;}
-  .day-block:nth-child(even) .stops{direction:ltr;}
   #hero{align-items:flex-end;}
   .hero-cta-row{flex-direction:column; align-items:flex-start;}
 }
 @media (max-width:480px){
   .stat-grid{grid-template-columns:1fr;}
   .dest-grid{grid-template-columns:1fr;}
-  .masonry{column-count:1;}
 }
 </style>
 </head>
@@ -451,7 +476,6 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
       <li><a href="#stay" data-nav>Stay &amp; Food</a></li>
       <li><a href="#budget" data-nav>Budget</a></li>
       <li><a href="#guide" data-nav>Trek Guide</a></li>
-      <li><a href="#gallery" data-nav>Gallery</a></li>
       <li><a href="#faq" data-nav>FAQ</a></li>
       <li><a href="#contact" data-nav>Contact</a></li>
     </ul>
@@ -471,33 +495,38 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
   <a href="#stay">Stay &amp; Food</a>
   <a href="#budget">Budget</a>
   <a href="#guide">Trek Guide</a>
-  <a href="#gallery">Gallery</a>
   <a href="#faq">FAQ</a>
   <a href="#contact">Contact</a>
 </div>
 
 <!-- ============ HERO ============ -->
 <section id="hero">
+  <img class="hero-photo" src="images/download.jpg" alt="" aria-hidden="true"
+       onerror="this.style.display='none'">
+  <div class="hero-overlay"></div>
   <div class="sky-glow"></div>
   <div class="mist"></div>
-  <div class="ridge" id="ridge-back" style="opacity:.55">
+  <div class="ridge" id="ridge-back" style="opacity:.35">
     <svg viewBox="0 0 1440 420" preserveAspectRatio="none"><path d="M0 300 L120 210 L260 280 L420 140 L560 240 L720 120 L900 260 L1080 160 L1260 250 L1440 190 L1440 420 L0 420 Z" fill="#0F2E20"/></svg>
   </div>
-  <div class="ridge" id="ridge-mid" style="opacity:.8">
+  <div class="ridge" id="ridge-mid" style="opacity:.5">
     <svg viewBox="0 0 1440 380" preserveAspectRatio="none"><path d="M0 320 L160 240 L300 300 L480 190 L640 290 L820 170 L980 280 L1160 200 L1320 290 L1440 240 L1440 420 L0 420 Z" fill="#173C2E"/></svg>
   </div>
-  <div class="ridge" id="ridge-front">
+  <div class="ridge" id="ridge-front" style="opacity:.65">
     <svg viewBox="0 0 1440 320" preserveAspectRatio="none"><path d="M0 320 L140 260 L320 320 L500 230 L660 310 L860 220 L1040 300 L1220 240 L1440 300 L1440 420 L0 420 Z" fill="#0B231A"/></svg>
   </div>
 
+  <div id="firefly-field" aria-hidden="true"></div>
+  <div class="cursor-glow" id="cursor-glow"></div>
+
   <div class="container" id="hero-content">
-    <div class="hero-badge"><span class="dot"></span> 1&ndash;3 August 2026 &middot; Western Ghats, Karnataka</div>
+    <div class="hero-badge"><span class="dot"></span> 31 Jul&ndash;2 Aug 2026 &middot; Western Ghats, Karnataka</div>
     <h1 class="reveal">Kodachadri Trek <em>2026</em></h1>
-    <p class="hero-sub reveal">3 Days Adventure &middot; Trek &middot; Waterfalls &middot; Memories &mdash; twelve of us, one forest trail, and a peak worth the climb.</p>
+    <p class="hero-sub reveal">3 Days Adventure &middot; Trek &middot; Waterfalls &middot; Memories &mdash; seventeen of us, one forest trail, and a peak worth the climb.</p>
 
     <div class="hero-meta-row reveal">
       <div class="hero-chip"><i data-lucide="map-pin" style="width:16px;height:16px"></i><div><span class="lbl">Starting point</span><b>Kanakapura</b></div></div>
-      <div class="hero-chip"><i data-lucide="users" style="width:16px;height:16px"></i><div><span class="lbl">Trekkers</span><b>12 Members</b></div></div>
+      <div class="hero-chip"><i data-lucide="users" style="width:16px;height:16px"></i><div><span class="lbl">Trekkers</span><b>17 Members</b></div></div>
       <div class="hero-chip"><i data-lucide="calendar" style="width:16px;height:16px"></i><div><span class="lbl">Duration</span><b>3 Days</b></div></div>
     </div>
 
@@ -523,14 +552,14 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
       <p>A moderate 3-day trek from the plains of Kanakapura into the misty ridgelines of Kodachadri &mdash; forts, falls, a peak, and a homestay to come back to each night.</p>
     </div>
     <div class="stat-grid reveal-stagger">
-      <div class="stat-card r-child"><div class="ic"><i data-lucide="calendar-days" style="width:20px;height:20px"></i></div><div class="big-num">3 Days</div><p>1&ndash;3 August 2026</p></div>
-      <div class="stat-card r-child"><div class="ic"><i data-lucide="mountain" style="width:20px;height:20px"></i></div><div class="big-num">Kodachadri</div><p>Destination peak, Western Ghats</p></div>
-      <div class="stat-card r-child"><div class="ic"><i data-lucide="gauge" style="width:20px;height:20px"></i></div><div class="big-num">Moderate</div><p>Jeep + forest trail difficulty</p></div>
-      <div class="stat-card r-child"><div class="ic"><i data-lucide="users" style="width:20px;height:20px"></i></div><div class="big-num">12</div><p>Members on this trip</p></div>
-      <div class="stat-card r-child"><div class="ic"><i data-lucide="map-pin" style="width:20px;height:20px"></i></div><div class="big-num">Kanakapura</div><p>Starting point, overnight drive</p></div>
-      <div class="stat-card r-child"><div class="ic"><i data-lucide="bus" style="width:20px;height:20px"></i></div><div class="big-num">Traveller</div><p>Shared transport, see budget</p></div>
-      <div class="stat-card r-child"><div class="ic"><i data-lucide="home" style="width:20px;height:20px"></i></div><div class="big-num">Homestay</div><p>Matthuga Kodachadri Homestay</p></div>
-      <div class="stat-card r-child"><div class="ic"><i data-lucide="salad" style="width:20px;height:20px"></i></div><div class="big-num">Veg Only</div><p>All meals vegetarian</p></div>
+      <div class="stat-card r-child tilt-card"><div class="ic"><i data-lucide="calendar-days" style="width:20px;height:20px"></i></div><div class="big-num">3 Days</div><p>31 Jul &ndash; 2 Aug 2026</p></div>
+      <div class="stat-card r-child tilt-card"><div class="ic"><i data-lucide="mountain" style="width:20px;height:20px"></i></div><div class="big-num">Kodachadri</div><p>Destination peak, Western Ghats</p></div>
+      <div class="stat-card r-child tilt-card"><div class="ic"><i data-lucide="gauge" style="width:20px;height:20px"></i></div><div class="big-num">Moderate</div><p>Jeep + forest trail difficulty</p></div>
+      <div class="stat-card r-child tilt-card"><div class="ic"><i data-lucide="users" style="width:20px;height:20px"></i></div><div class="big-num">17</div><p>Members on this trip</p></div>
+      <div class="stat-card r-child tilt-card"><div class="ic"><i data-lucide="map-pin" style="width:20px;height:20px"></i></div><div class="big-num">Kanakapura</div><p>Starting point, overnight drive</p></div>
+      <div class="stat-card r-child tilt-card"><div class="ic"><i data-lucide="bus" style="width:20px;height:20px"></i></div><div class="big-num">25-Seater AC Bus</div><p>Shared transport, see budget</p></div>
+      <div class="stat-card r-child tilt-card"><div class="ic"><i data-lucide="home" style="width:20px;height:20px"></i></div><div class="big-num">Homestay</div><p>Amruthavana Homestay</p></div>
+      <div class="stat-card r-child tilt-card"><div class="ic"><i data-lucide="salad" style="width:20px;height:20px"></i></div><div class="big-num">Veg Only</div><p>All meals vegetarian</p></div>
     </div>
   </div>
 </section>
@@ -548,39 +577,38 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
       <div class="trail-line" aria-hidden="true"></div>
 
       <div class="day-block reveal">
-        <div class="day-head"><div class="day-badge"><b>01</b><span>Aug</span></div><div><h3>Day 1 &mdash; On the Road</h3><p>Kanakapura to Kodachadri, overnight</p></div></div>
-        <div class="stops">
-          <div class="stop"><div class="stop-ic"><i data-lucide="car" style="width:15px;height:15px"></i></div><div><p>Start from Kanakapura</p><small>Evening departure</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="moon" style="width:15px;height:15px"></i></div><div><p>Overnight drive towards Kodachadri</p><small>Rest as we cover distance</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="utensils" style="width:15px;height:15px"></i></div><div><p>Dinner near Shivamogga Highway</p><small>Self-paid highway stop</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="home" style="width:15px;height:15px"></i></div><div><p>Continue to Kodachadri Homestay</p><small>Arrival late night / early morning</small></div></div>
+        <div class="day-head"><div class="day-badge"><b>31</b><span>Jul</span></div><div><h3>Day 1 &mdash; On the Road</h3><p>Kanakapura to Kodachadri, overnight</p></div></div>
+        <div class="stops reveal-stagger">
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="car" style="width:15px;height:15px"></i></div><div><p>Start from Kanakapura</p><small>Night departure &middot; 9 PM</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="moon" style="width:15px;height:15px"></i></div><div><p>Overnight drive towards Kodachadri</p><small>Rest as we cover distance</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="utensils" style="width:15px;height:15px"></i></div><div><p>Dinner near Shivamogga Highway</p><small>Self-paid highway stop</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="home" style="width:15px;height:15px"></i></div><div><p>Continue to Amruthavana Homestay</p><small>Arrival early morning</small></div></div>
         </div>
       </div>
 
       <div class="day-block reveal">
-        <div class="day-head"><div class="day-badge"><b>02</b><span>Aug</span></div><div><h3>Day 2 &mdash; Temples &amp; Forts</h3><p>Sightseeing loop around Kodachadri</p></div></div>
-        <div class="stops">
-          <div class="stop"><div class="stop-ic"><i data-lucide="sunrise" style="width:15px;height:15px"></i></div><div><p>Reach homestay, freshen up &amp; breakfast</p><small>Included</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="landmark" style="width:15px;height:15px"></i></div><div><p>Sri Devagange Temple &amp; Pond</p><small>First stop</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="castle" style="width:15px;height:15px"></i></div><div><p>Nagar Fort</p><small>Hilltop ruins</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="mountain" style="width:15px;height:15px"></i></div><div><p>Kavi Shaila</p><small>Viewpoint</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="castle" style="width:15px;height:15px"></i></div><div><p>Kavaledurga Fort</p><small>Historic hill fort</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="waves" style="width:15px;height:15px"></i></div><div><p>Chakra Reservoir</p><small>Backwater stop</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="droplets" style="width:15px;height:15px"></i></div><div><p>Jog Falls</p><small>Lunch outside nearby</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="chef-hat" style="width:15px;height:15px"></i></div><div><p>Return to homestay, cook dinner together</p><small>Group dinner, included</small></div></div>
+        <div class="day-head"><div class="day-badge"><b>01</b><span>Aug</span></div><div><h3>Day 2 &mdash; The Summit</h3><p>Kodachadri peak &amp; Hidlumane Falls</p></div></div>
+        <div class="stops reveal-stagger">
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="sunrise" style="width:15px;height:15px"></i></div><div><p>Reach Amruthavana, quick freshen up &amp; breakfast</p><small>Included</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="truck" style="width:15px;height:15px"></i></div><div><p>Jeep ride to the trailhead</p><small>Forest jeep track</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="footprints" style="width:15px;height:15px"></i></div><div><p>Kodachadri Trek to the peak</p><small>Moderate forest trail</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="flag" style="width:15px;height:15px"></i></div><div><p>Lunch at the peak</p><small>Packed lunch</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="droplets" style="width:15px;height:15px"></i></div><div><p>Hidlumane Waterfalls</p><small>Descent stop</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="chef-hat" style="width:15px;height:15px"></i></div><div><p>Return to homestay, cook dinner together</p><small>Group dinner, included</small></div></div>
         </div>
       </div>
 
       <div class="day-block reveal">
-        <div class="day-head"><div class="day-badge"><b>03</b><span>Aug</span></div><div><h3>Day 3 &mdash; The Summit</h3><p>Kodachadri peak &amp; Hidlumane Falls</p></div></div>
-        <div class="stops">
-          <div class="stop"><div class="stop-ic"><i data-lucide="coffee" style="width:15px;height:15px"></i></div><div><p>Early breakfast &amp; pack lunch</p><small>Included</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="truck" style="width:15px;height:15px"></i></div><div><p>Jeep ride to the trailhead</p><small>Forest jeep track</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="footprints" style="width:15px;height:15px"></i></div><div><p>Kodachadri Trek to the peak</p><small>Moderate forest trail</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="flag" style="width:15px;height:15px"></i></div><div><p>Lunch at the peak</p><small>Packed lunch</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="droplets" style="width:15px;height:15px"></i></div><div><p>Hidlumane Waterfalls</p><small>Descent stop</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="clock" style="width:15px;height:15px"></i></div><div><p>Finish trek &amp; return journey by 4 PM</p><small>Back towards Kanakapura</small></div></div>
-          <div class="stop"><div class="stop-ic"><i data-lucide="utensils" style="width:15px;height:15px"></i></div><div><p>Dinner on the way home</p><small>Self-paid stop</small></div></div>
+        <div class="day-head"><div class="day-badge"><b>02</b><span>Aug</span></div><div><h3>Day 3 &mdash; Temples &amp; Forts</h3><p>Sightseeing loop &amp; return journey</p></div></div>
+        <div class="stops reveal-stagger">
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="coffee" style="width:15px;height:15px"></i></div><div><p>Breakfast &amp; checkout from homestay</p><small>Self-paid &mdash; checkout day</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="landmark" style="width:15px;height:15px"></i></div><div><p>Sri Devagange Temple &amp; Pond</p><small>First stop</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="castle" style="width:15px;height:15px"></i></div><div><p>Nagar Fort</p><small>Hilltop ruins</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="mountain" style="width:15px;height:15px"></i></div><div><p>Kavi Shaila</p><small>Viewpoint</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="castle" style="width:15px;height:15px"></i></div><div><p>Kavaledurga Fort</p><small>Historic hill fort</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="waves" style="width:15px;height:15px"></i></div><div><p>Chakra Reservoir</p><small>Backwater stop</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="droplets" style="width:15px;height:15px"></i></div><div><p>Jog Falls</p><small>Lunch nearby, self-paid</small></div></div>
+          <div class="stop r-child"><div class="stop-ic"><i data-lucide="clock" style="width:15px;height:15px"></i></div><div><p>Return journey towards Kanakapura</p><small>Dinner on the way, self-paid</small></div></div>
         </div>
       </div>
     </div>
@@ -609,35 +637,35 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
     <div class="section-head reveal">
       <span class="eyebrow">Stay &amp; Food</span>
       <h2>Base camp and the meal plan</h2>
-      <p>One homestay for both nights, and vegetarian meals arranged for the group throughout the trip.</p>
+      <p>One homestay for both nights at Amruthavana, with all meals bundled into a single per-person package.</p>
     </div>
     <div class="stay-grid">
       <div class="stay-card reveal">
-        <div class="homestay-visual" style="padding:0; overflow:hidden; border-radius:var(--radius-md);"><img src="images/maduga_homestay.png" alt="Matthuga Kodachadri Homestay" style="width:100%; height:180px; object-fit:cover;"></div>
+        <div class="homestay-visual" style="background:linear-gradient(135deg,var(--forest),var(--mtn-blue)); display:flex; align-items:center; justify-content:center; overflow:hidden;"><img src="images/amruthavana-homestay.jpg" loading="lazy" alt="Amruthavana Homestay" style="width:100%;height:100%;object-fit:cover;" onerror="this.outerHTML='&lt;i data-lucide=&quot;home&quot; style=&quot;width:44px;height:44px;color:var(--beige);opacity:0.9;&quot;&gt;&lt;/i&gt;'; if(window.lucide) lucide.createIcons();"></div>
         <span class="eyebrow">Accommodation</span>
-        <h3>Matthuga Kodachadri Homestay</h3>
-        <p style="color:var(--text-soft); font-size:0.9rem;">2 Regal Rooms booked for the full group, right at the base of the trek.</p>
-        <div class="price-tag">&#8377;13,200</div>
-        <p style="font-size:0.78rem; color:var(--text-soft);">Total for 12 members &middot; both nights</p>
+        <h3>Amruthavana Homestay</h3>
+        <p style="color:var(--text-soft); font-size:0.9rem;">Rooms booked for the full group, right at the base of the trek &mdash; 3 meals covered on the trek day.</p>
+        <div class="price-tag">&#8377;1,800 <span style="font-size:0.95rem; font-weight:600; color:var(--text-soft); font-family:var(--body);">/ person</span></div>
+        <p style="font-size:0.78rem; color:var(--text-soft);">Includes stay for both nights &middot; breakfast, lunch &amp; dinner on Day 2 &middot; 17 members &middot; &#8377;30,600 total</p>
         <ul class="stay-facts">
-          <li><i data-lucide="bed-double" style="width:16px;height:16px; flex-shrink:0;"></i><span><b>2 Regal Rooms</b> shared across the group</span></li>
-          <li><i data-lucide="users" style="width:16px;height:16px; flex-shrink:0;"></i><span>Capacity for all <b>12 members</b></span></li>
-          
+          <li><i data-lucide="bed-double" style="width:16px;height:16px; flex-shrink:0;"></i><span>Rooms booked for the <b>full group</b> of 17</span></li>
+          <li><i data-lucide="utensils" style="width:16px;height:16px; flex-shrink:0;"></i><span><b>3 meals</b> included on the trek day (Day 2)</span></li>
+          <li><i data-lucide="users" style="width:16px;height:16px; flex-shrink:0;"></i><span>Capacity for all <b>17 members</b></span></li>
         </ul>
-        <a class="btn btn-outline" href="https://bookings.resavenue.com/engine-ibe/rooms?regCode=VVGI0118&amp;roomSearchId=f95e59034d7b4a8f92911917adab3c04&amp;adult_1=2&amp;child_1=0&amp;noOfRooms=1" target="_blank" rel="noopener" style="margin-top:14px; width:100%;"><i data-lucide="calendar-check" style="width:15px;height:15px"></i> Book This Homestay</a>
+        <a class="btn btn-outline" href="https://amruthavana.in/" target="_blank" rel="noopener" style="margin-top:14px; width:100%;"><i data-lucide="calendar-check" style="width:15px;height:15px"></i> Visit Amruthavana</a>
       </div>
       <div class="reveal">
         <span class="eyebrow">Meal Plan</span>
-        <h3 style="margin:10px 0 18px; font-size:1.3rem;">Vegetarian, arranged for the group</h3>
+        <h3 style="margin:10px 0 18px; font-size:1.3rem;">Vegetarian, bundled with the stay</h3>
         <table class="food-table">
-          <thead><tr><th>Day</th><th>Meals Included</th><th>Rate / person</th><th>Notes</th></tr></thead>
+          <thead><tr><th>Day</th><th>Meals Included</th><th>Status</th><th>Notes</th></tr></thead>
           <tbody>
             <tr><td>Day 1</td><td>&mdash;</td><td class="amt">Self-paid</td><td>Dinner near Shivamogga Highway</td></tr>
-            <tr><td>Day 2</td><td>Breakfast, Lunch, Dinner</td><td class="amt">&#8377;150 / &#8377;200 / &#8377;200</td><td>Lunch outside, dinner cooked together</td></tr>
-            <tr><td>Day 3</td><td>Breakfast, Packed Lunch</td><td class="amt">&#8377;150 / &#8377;200</td><td>Lunch carried to the peak</td></tr>
+            <tr><td>Day 2</td><td>Breakfast, Lunch, Dinner</td><td class="amt">Included</td><td>Trek day &mdash; packed lunch, dinner cooked together</td></tr>
+            <tr><td>Day 3</td><td>Breakfast, Lunch</td><td class="amt">Self-paid</td><td>Checkout day &mdash; not included in the stay</td></tr>
           </tbody>
         </table>
-        <div class="veg-note"><span class="veg-dot"></span> Homestay arranged meals are vegetarian, However we can get Non-veg and have it inside the homestay as well.</div>
+        <div class="veg-note"><span class="veg-dot"></span> All meals arranged through Amruthavana are vegetarian; Day 1 dinner and Day 3's breakfast &amp; lunch are self-paid since we check out that morning.</div>
       </div>
     </div>
   </div>
@@ -647,25 +675,35 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
 <section id="budget">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">Budget Calculator</span>
-      <h2>Pick a vehicle, see the real cost</h2>
-      <p>Shared costs (stay, food, jeep, entries, tolls) stay the same at &#8377;2,687 per person &mdash; only the transport changes with the vehicle.</p>
+      <span class="eyebrow">Budget</span>
+      <h2>Where the &#8377;4,476 per head goes</h2>
+      <p>Transport is a 25-seater AC bus, booked for the full trip; stay, food, jeep and entries are shared equally across all 17 members.</p>
     </div>
     <div class="budget-panel reveal">
       <div class="vehicle-select">
-        <h4>Choose a vehicle</h4>
-        <div id="vehicle-list"></div>
+        <h4>Transport &mdash; 25-Seater AC Bus</h4>
+        <div class="v-option selected" style="cursor:default;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="v-radio" style="border-color:var(--forest);"><div style="position:absolute; inset:3px; border-radius:50%; background:var(--forest);"></div></div>
+            <div><div class="v-name">25-Seater AC Bus</div><div class="v-remark">Booked for the full group &middot; confirmed</div></div>
+          </div>
+          <div class="v-rate">&#8377;38,450<br>@&#8377;35/km</div>
+        </div>
+        <ul class="stay-facts" style="margin-top:20px;">
+          <li><i data-lucide="route" style="width:16px;height:16px; flex-shrink:0;"></i><span>Bus charges &middot; <b>950 km @ &#8377;35/km</b> &mdash; &#8377;33,250</span></li>
+          <li><i data-lucide="wallet" style="width:16px;height:16px; flex-shrink:0;"></i><span>Driver bata &middot; <b>4 &times; &#8377;800</b> (2 day, 2 night) &mdash; &#8377;3,200</span></li>
+          <li><i data-lucide="ticket" style="width:16px;height:16px; flex-shrink:0;"></i><span>Toll &amp; parking &mdash; &#8377;2,000</span></li>
+        </ul>
       </div>
       <div class="budget-result">
         <h4>Estimated total / person</h4>
-        <div class="result-total" id="result-total">&#8377;4,229</div>
-        <div class="result-sub" id="result-sub">AC Traveller &middot; 900 km &middot; recommended</div>
+        <div class="result-total" id="result-total">&#8377;4,476</div>
+        <div class="result-sub" id="result-sub">25-Seater AC Bus &middot; 950 km &middot; 17 members</div>
         <ul class="breakdown-list" id="breakdown-list"></ul>
         <div class="budget-actions">
           <button class="btn btn-primary" id="download-budget" style="background:var(--amber);"><i data-lucide="download" style="width:15px;height:15px"></i> Download Summary</button>
           <button class="btn btn-ghost" onclick="window.print()"><i data-lucide="printer" style="width:15px;height:15px"></i> Print</button>
         </div>
-        <div class="warn-note" id="warn-note" style="display:none;"><i data-lucide="triangle-alert" style="width:15px;height:15px"></i><span>This vehicle's capacity doesn't suit 12 members &mdash; per-person cost isn't applicable.</span></div>
       </div>
     </div>
   </div>
@@ -697,18 +735,6 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
   </div>
 </section>
 
-<!-- ============ GALLERY ============ -->
-<section id="gallery">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Gallery</span>
-      <h2>Memories, as we make them</h2>
-      <p>Scenes from the route &mdash; the trail, the falls, the forts, and the homestay we're calling base camp.</p>
-    </div>
-    <div class="masonry" id="masonry"></div>
-  </div>
-</section>
-
 <!-- ============ FAQ ============ -->
 <section id="faq">
   <div class="container">
@@ -725,7 +751,7 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
   <div class="container">
     <div class="section-head reveal">
       <span class="eyebrow">Contact</span>
-      <h2>Questions before 1st August?</h2>
+      <h2>Questions before 31st July?</h2>
       <p>Reach out to the organizers, or jump into the trip WhatsApp group for live updates.</p>
     </div>
     <div class="contact-grid reveal-stagger">
@@ -753,21 +779,13 @@ footer{background:var(--forest-deep); color:rgba(241,231,208,0.6); padding:34px 
 
 <footer>
   <div class="container footer-inner">
-    <span>Kodachadri Trek 2026 &middot; 12 members, one trail.</span>
-    <span>Built for the crew heading to Kodachadri, 1&ndash;3 August 2026.</span>
+    <span>Kodachadri Trek 2026 &middot; 17 members, one trail.</span>
+    <span>Built for the crew heading to Kodachadri, 31 Jul&ndash;2 Aug 2026.</span>
   </div>
 </footer>
 
 <button id="back-to-top" aria-label="Back to top"><i data-lucide="arrow-up" style="width:20px;height:20px"></i></button>
 <a id="wa-float" href="#contact" aria-label="WhatsApp group"><i data-lucide="message-circle" style="width:22px;height:22px"></i></a>
-
-<div id="lightbox">
-  <button id="lb-close" aria-label="Close"><i data-lucide="x" style="width:28px;height:28px"></i></button>
-  <div>
-    <img id="lb-img" src="" alt="">
-    <div class="lb-cap" id="lb-cap"></div>
-  </div>
-</div>
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
@@ -884,115 +902,126 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* ---------- destinations ---------- */
   var destinations = [
-    { name:'Sri Devagange Temple & Pond', desc:'A quiet forest shrine beside a spring-fed pond — the first stop of Day 2.', icon:'landmark', color:'#3E6E8E' },
-    { name:'Nagar Fort', desc:'A hilltop fort ruin with sweeping views across the Western Ghats.', icon:'castle', color:'#1E5A3E' },
-    { name:'Kavi Shaila', desc:'A rocky viewpoint known for wide valley views over the ghats.', icon:'mountain', color:'#2F7550' },
-    { name:'Kavaledurga Fort', desc:'A historic hill fort with old temple ruins and stepped stone paths.', icon:'castle', color:'#3E6E8E' },
-    { name:'Chakra Reservoir', desc:'A calm dam backwater — a good quiet stop between forts.', icon:'waves', color:'#1E5A3E' },
-    { name:'Jog Falls', desc:'One of India\'s tallest waterfalls, a dramatic multi-tiered cascade.', icon:'droplets', color:'#2F7550' },
-    { name:'Kodachadri Peak', desc:'The trek\'s summit — a grassy ridge with panoramic views on a clear day.', icon:'flag', color:'#C9852E' },
-    { name:'Hidlumane Waterfalls', desc:'A hidden forest waterfall on the descent, perfect for cooling off.', icon:'droplets', color:'#3E6E8E' }
+    { name:'Sri Devagange Temple & Pond', desc:'A quiet forest shrine beside a spring-fed pond — the first stop of Day 3.', icon:'landmark', color:'#3E6E8E', photo:'/images/devaganga.png' },
+    { name:'Nagar Fort', desc:'A hilltop fort ruin with sweeping views across the Western Ghats.', icon:'castle', color:'#1E5A3E', photo:'images/nagara_fort.jpg' },
+    { name:'Kavi Shaila', desc:'A rocky viewpoint known for wide valley views over the ghats.', icon:'mountain', color:'#2F7550', photo:'images/kavi_shaila.png' },
+    { name:'Kavaledurga Fort', desc:'A historic hill fort with old temple ruins and stepped stone paths.', icon:'castle', color:'#3E6E8E', photo:'images/kavaledurga.jpg' },
+    { name:'Chakra Reservoir', desc:'A calm dam backwater — a good quiet stop between forts.', icon:'waves', color:'#1E5A3E', photo:'images/chakra.avif' },
+    { name:'Jog Falls', desc:'One of India\'s tallest waterfalls, a dramatic multi-tiered cascade.', icon:'droplets', color:'#2F7550', photo:'images/jog_falls.webp' },
+    { name:'Kodachadri Peak', desc:'The trek\'s summit — a grassy ridge with panoramic views on a clear day.', icon:'flag', color:'#C9852E', photo:'images/kodachadri_peak.jpg' },
+    { name:'Hidlumane Waterfalls', desc:'A hidden forest waterfall on the descent, perfect for cooling off.', icon:'droplets', color:'#3E6E8E', photo:'images/hidlumane_falls.jpg' }
   ];
   var destGrid = document.getElementById('dest-grid');
   destinations.forEach(function (d) {
     var mapUrl = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(d.name + ' Karnataka');
     var card = document.createElement('div');
-    card.className = 'dest-card r-child';
+    card.className = 'dest-card r-child tilt-card';
+    var visual = d.photo
+      ? '<div class="dest-visual" style="background:' + d.color + '"><img src="' + d.photo + '" loading="lazy" alt="' + d.name + '" onerror="this.parentElement.innerHTML=\'<i data-lucide=&quot;' + d.icon + '&quot;></i>\'; if(window.lucide) lucide.createIcons();"></div>'
+      : '<div class="dest-visual" style="background:' + d.color + '"><i data-lucide="' + d.icon + '"></i></div>';
     card.innerHTML =
-      '<div class="dest-visual" style="background:' + d.color + '"><i data-lucide="' + d.icon + '"></i></div>' +
+      visual +
       '<div class="dest-body"><h4>' + d.name + '</h4><p>' + d.desc + '</p>' +
       '<a class="dest-link" href="' + mapUrl + '" target="_blank" rel="noopener"><i data-lucide="external-link" style="width:13px;height:13px"></i> View on Google Maps</a></div>';
     destGrid.appendChild(card);
   });
 
   /* ---------- budget calculator ---------- */
-  var SHARED_PER_PERSON = 2687;
-  var SHARED_TOTAL = 32240;
+  var MEMBERS = 17;
+
   var sharedBreakdown = [
-    ['Accommodation', 13200], ['Food', 10800], ['Jeep Charges', 5000],
-    ['Forest Entry', 840], ['Hidlumane Entry', 1200], ['Toll & Parking', 1200]
+    ['Stay & Food (Amruthavana, ' + MEMBERS + ' \u00d7 \u20b91,800)', 30600], ['Jeep Charges', 5000],
+    ['Forest Entry', 840], ['Hidlumane Entry', 1200]
   ];
-  var vehicles = [
-    { id:'nonac', name:'Non-AC Traveller', rate:18, total:16700, perPerson:1392, remark:'Recommended budget option' },
-    { id:'ac', name:'AC Traveller', rate:20, total:18500, perPerson:1542, remark:'Recommended', recommended:true },
-    { id:'urb13', name:'Urbania 13-Seater', rate:36, total:33100, perPerson:2758, remark:'Luxury option' },
-    { id:'urb16', name:'Urbania 16-Seater', rate:38, total:34900, perPerson:2908, remark:'Luxury option' },
-    { id:'urb9', name:'Urbania 9-Seater Luxury', rate:42, total:38500, perPerson:null, remark:'Capacity insufficient for 12', disabled:true }
+  var SHARED_TOTAL = sharedBreakdown.reduce(function (s, r) { return s + r[1]; }, 0);
+  var SHARED_PER_PERSON = Math.round(SHARED_TOTAL / MEMBERS);
+
+  var transportBreakdown = [
+    ['Bus Charges (950 km @ \u20b935/km)', 33250],
+    ['Driver Bata (4 \u00d7 \u20b9800)', 3200],
+    ['Toll & Parking', 2000]
   ];
-  var vehicleList = document.getElementById('vehicle-list');
-  var selectedVehicleId = 'ac';
+  var TRANSPORT_TOTAL = transportBreakdown.reduce(function (s, r) { return s + r[1]; }, 0);
+  var TRANSPORT_PER_PERSON = Math.round(TRANSPORT_TOTAL / MEMBERS);
+
+  var GRAND_TOTAL_PER_PERSON = SHARED_PER_PERSON + TRANSPORT_PER_PERSON;
 
   function fmt(n){ return '\u20b9' + n.toLocaleString('en-IN'); }
 
-  function renderVehicles() {
-    vehicleList.innerHTML = '';
-    vehicles.forEach(function (v) {
-      var row = document.createElement('div');
-      row.className = 'v-option' + (v.id === selectedVehicleId ? ' selected' : '') + (v.disabled ? ' disabled' : '');
-      row.innerHTML =
-        '<div style="display:flex;align-items:center;gap:12px;">' +
-        '<div class="v-radio"></div><div><div class="v-name">' + v.name + '</div><div class="v-remark">' + v.remark + '</div></div></div>' +
-        '<div class="v-rate">' + fmt(v.total) + '<br>@\u20b9' + v.rate + '/km</div>';
-      row.addEventListener('click', function () {
-        if (v.disabled) { selectedVehicleId = v.id; renderVehicles(); renderResult(); return; }
-        selectedVehicleId = v.id; renderVehicles(); renderResult();
-      });
-      vehicleList.appendChild(row);
-    });
-  }
-
   function renderResult() {
-    var v = vehicles.find(function (x) { return x.id === selectedVehicleId; });
     var totalEl = document.getElementById('result-total');
     var subEl = document.getElementById('result-sub');
     var list = document.getElementById('breakdown-list');
-    var warn = document.getElementById('warn-note');
 
     list.innerHTML = '';
-    sharedBreakdown.forEach(function (row) {
+
+    function addCat(label) {
       var li = document.createElement('li');
-      li.innerHTML = '<span>' + row[0] + '</span><b>' + fmt(row[1]) + '</b>';
+      li.className = 'cat';
+      li.textContent = label;
       list.appendChild(li);
-    });
-    var transportLi = document.createElement('li');
-    transportLi.innerHTML = '<span>Transport (' + v.name + ')</span><b>' + fmt(v.total) + '</b>';
-    list.appendChild(transportLi);
-
-    var sharedLi = document.createElement('li');
-    sharedLi.innerHTML = '<span>Shared cost / person</span><b>' + fmt(SHARED_PER_PERSON) + '</b>';
-    list.appendChild(sharedLi);
-
-    if (v.perPerson) {
-      var grand = document.createElement('li');
-      grand.className = 'grand';
-      grand.innerHTML = '<span>Total / person</span><b>' + fmt(v.perPerson + SHARED_PER_PERSON) + '</b>';
-      list.appendChild(grand);
-      totalEl.textContent = fmt(v.perPerson + SHARED_PER_PERSON);
-      subEl.textContent = v.name + ' \u00b7 900 km \u00b7 ' + v.remark;
-      warn.style.display = 'none';
-    } else {
-      totalEl.textContent = 'N/A';
-      subEl.textContent = v.name + ' \u00b7 ' + v.remark;
-      warn.style.display = 'flex';
     }
+    function addRow(label, amt) {
+      var li = document.createElement('li');
+      li.innerHTML = '<span>' + label + '</span><b>' + fmt(amt) + '</b>';
+      list.appendChild(li);
+    }
+    function addSubtotal(label, amt) {
+      var li = document.createElement('li');
+      li.className = 'subtotal';
+      li.innerHTML = '<span>' + label + '</span><b>' + fmt(amt) + '</b>';
+      list.appendChild(li);
+    }
+
+    addCat('Transport (\u00f7 ' + MEMBERS + ' members)');
+    transportBreakdown.forEach(function (row) { addRow(row[0], row[1]); });
+    addSubtotal('Transport / person', TRANSPORT_PER_PERSON);
+
+    addCat('Stay, Food & Entries (\u00f7 ' + MEMBERS + ' members)');
+    sharedBreakdown.forEach(function (row) { addRow(row[0], row[1]); });
+    addSubtotal('Shared cost / person', SHARED_PER_PERSON);
+
+    var grand = document.createElement('li');
+    grand.className = 'grand';
+    grand.innerHTML = '<span>Total / person</span><b>' + fmt(GRAND_TOTAL_PER_PERSON) + '</b>';
+    list.appendChild(grand);
+
+    countUpTo(totalEl, GRAND_TOTAL_PER_PERSON);
+    subEl.textContent = '25-Seater AC Bus \u00b7 950 km \u00b7 ' + MEMBERS + ' members';
     if (window.lucide) lucide.createIcons();
   }
 
-  renderVehicles();
+  function countUpTo(el, target) {
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.textContent = fmt(target); return; }
+    var start = 0, duration = 900, startTime = null;
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = fmt(Math.round(start + (target - start) * eased));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
   renderResult();
 
   document.getElementById('download-budget').addEventListener('click', function () {
-    var v = vehicles.find(function (x) { return x.id === selectedVehicleId; });
     var lines = [
       'KODACHADRI TREK 2026 - BUDGET SUMMARY', '',
-      'Vehicle: ' + v.name + ' (@\u20b9' + v.rate + '/km)',
-      'Transport total: \u20b9' + v.total.toLocaleString('en-IN'), ''
+      'Transport: 25-Seater AC Bus (@\u20b935/km)'
     ];
-    sharedBreakdown.forEach(function (row) { lines.push(row[0] + ': \u20b9' + row[1].toLocaleString('en-IN')); });
+    transportBreakdown.forEach(function (row) { lines.push('  ' + row[0] + ': \u20b9' + row[1].toLocaleString('en-IN')); });
+    lines.push('Transport total: \u20b9' + TRANSPORT_TOTAL.toLocaleString('en-IN'));
+    lines.push('Transport cost per person: \u20b9' + TRANSPORT_PER_PERSON.toLocaleString('en-IN'), '');
+    lines.push('Shared costs:');
+    sharedBreakdown.forEach(function (row) { lines.push('  ' + row[0] + ': \u20b9' + row[1].toLocaleString('en-IN')); });
     lines.push('Shared subtotal: \u20b9' + SHARED_TOTAL.toLocaleString('en-IN'));
     lines.push('Shared cost per person: \u20b9' + SHARED_PER_PERSON.toLocaleString('en-IN'));
     lines.push('');
-    lines.push(v.perPerson ? ('TOTAL PER PERSON: \u20b9' + (v.perPerson + SHARED_PER_PERSON).toLocaleString('en-IN')) : 'This vehicle is not suitable for 12 members.');
+    lines.push('Members: ' + MEMBERS);
+    lines.push('TOTAL PER PERSON: \u20b9' + GRAND_TOTAL_PER_PERSON.toLocaleString('en-IN'));
     var blob = new Blob([lines.join('\n')], { type: 'text/plain' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -1030,44 +1059,16 @@ document.addEventListener('DOMContentLoaded', function () {
     var checked = packList.querySelectorAll('input:checked').length;
     document.getElementById('pack-progress-text').textContent = checked + ' / ' + packItems.length + ' packed';
     document.getElementById('progress-fill').style.width = (checked / packItems.length * 100) + '%';
+    if (checked === packItems.length && typeof fireConfetti === 'function') fireConfetti();
   }
-
-  /* ---------- gallery (masonry + lightbox) ---------- */
-  var galleryItems = [
-    { src:'images/forest_trails.jpg', cap:'Forest trail' },
-    { src:'images/hidlumane_falls.jpg', cap:'Hidlumane Falls' },
-    { src:'images/jog_falls.webp', cap:'Jog Falls' },
-    { src:'images/nagara_fort.jpg', cap:'Nagara Fort' },
-    { src:'images/maduga_homestay.png', cap:'Homestay evenings' },
-    { src:'images/kavaledurga.jpg', cap:'Kavaledurga Fort' },
-    { src:'images/chakra.avif', cap:'Chakra Reservoir' }
-  ];
-  var masonry = document.getElementById('masonry');
-  var lightbox = document.getElementById('lightbox');
-  var lbImg = document.getElementById('lb-img');
-  var lbCap = document.getElementById('lb-cap');
-  galleryItems.forEach(function (g) {
-    var div = document.createElement('div');
-    div.className = 'g-item';
-    div.innerHTML = '<img src="' + g.src + '" loading="lazy" alt="' + g.cap + '"><div class="g-cap">' + g.cap + '</div>';
-    div.addEventListener('click', function () {
-      lbImg.src = g.src;
-      lbCap.textContent = g.cap;
-      lightbox.classList.add('open');
-    });
-    masonry.appendChild(div);
-  });
-  document.getElementById('lb-close').addEventListener('click', function () { lightbox.classList.remove('open'); });
-  lightbox.addEventListener('click', function (e) { if (e.target === lightbox) lightbox.classList.remove('open'); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lightbox.classList.remove('open'); });
 
   /* ---------- FAQ ---------- */
   var faqs = [
     { q:'How difficult is the Kodachadri trek?', a:'It\'s rated moderate — a jeep ride covers the first stretch, then a forest trail climbs to the peak. No technical climbing is involved, but expect a few hours of steady uphill walking on natural terrain.' },
-    { q:'What food is provided?', a:'All arranged meals are vegetarian. Day 2 includes breakfast, lunch and a group-cooked dinner; Day 3 includes breakfast and a packed lunch for the peak. Day 1\'s highway dinner is self-paid.' },
-    { q:'What transport will we use?', a:'The group is choosing between a Non-AC Traveller, AC Traveller, or an Urbania minibus — compare exact costs in the budget calculator above.' },
+    { q:'What food is provided?', a:'All arranged meals are vegetarian. Day 2, the trek day, includes breakfast, packed lunch and a group-cooked dinner. Day 1\'s highway dinner and Day 3\'s breakfast &amp; lunch are self-paid, since Day 3 starts with checkout.' },
+    { q:'What transport will we use?', a:'A 25-seater AC bus, booked for the full group at \u20b935/km — see the exact cost breakdown, including driver bata and toll, in the budget section above.' },
     { q:'What\'s the weather like in early August?', a:'Early August falls in the Western Ghats monsoon — expect rain, mist and slippery trails. A raincoat and grippy trekking shoes are essential, not optional.' },
-    { q:'Do I need prior trekking experience?', a:'No prior trekking experience is required, but a reasonable level of fitness helps, since Day 3 involves a few hours of continuous uphill walking followed by the descent.' }
+    { q:'Do I need prior trekking experience?', a:'No prior trekking experience is required, but a reasonable level of fitness helps, since Day 2 involves a few hours of continuous uphill walking followed by the descent.' }
   ];
   var faqList = document.getElementById('faq-list');
   faqs.forEach(function (f) {
@@ -1093,6 +1094,95 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   if (window.lucide) lucide.createIcons();
+
+  /* ---------- hero fireflies ---------- */
+  if (!reduceMotion) {
+    var field = document.getElementById('firefly-field');
+    for (var fi = 0; fi < 16; fi++) {
+      var fly = document.createElement('span');
+      fly.className = 'firefly';
+      fly.style.left = (Math.random() * 100) + '%';
+      fly.style.bottom = (Math.random() * 55) + '%';
+      fly.style.setProperty('--fx', (Math.random() * 80 - 40) + 'px');
+      fly.style.animationDuration = (7 + Math.random() * 8) + 's';
+      fly.style.animationDelay = (Math.random() * 10) + 's';
+      field.appendChild(fly);
+    }
+  }
+
+  /* ---------- cursor glow in hero ---------- */
+  var heroEl = document.getElementById('hero');
+  var glow = document.getElementById('cursor-glow');
+  if (heroEl && glow && !reduceMotion) {
+    heroEl.addEventListener('mousemove', function (e) {
+      var r = heroEl.getBoundingClientRect();
+      glow.style.left = (e.clientX - r.left) + 'px';
+      glow.style.top = (e.clientY - r.top) + 'px';
+    });
+  }
+
+  /* ---------- tilt cards ---------- */
+  if (!reduceMotion) {
+    document.addEventListener('mousemove', function (e) {
+      var el = e.target.closest && e.target.closest('.tilt-card');
+      if (!el) return;
+      var r = el.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      var rx = (py - 0.5) * -10;
+      var ry = (px - 0.5) * 10;
+      el.style.transform = 'perspective(700px) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg) translateY(-6px)';
+      el.style.setProperty('--gx', (px * 100) + '%');
+      el.style.setProperty('--gy', (py * 100) + '%');
+    });
+    document.addEventListener('mouseout', function (e) {
+      var el = e.target.closest && e.target.closest('.tilt-card');
+      if (el && !el.contains(e.relatedTarget)) el.style.transform = '';
+    });
+  }
+
+  /* ---------- magnetic buttons ---------- */
+  if (!reduceMotion) {
+    document.querySelectorAll('.btn-primary, .btn-ghost').forEach(function (btn) {
+      btn.addEventListener('mousemove', function (e) {
+        var r = btn.getBoundingClientRect();
+        var mx = (e.clientX - r.left - r.width / 2) * 0.25;
+        var my = (e.clientY - r.top - r.height / 2) * 0.35;
+        btn.style.transform = 'translate(' + mx + 'px,' + my + 'px)';
+      });
+      btn.addEventListener('mouseleave', function () { btn.style.transform = ''; });
+    });
+  }
+
+  /* ---------- button ripple ---------- */
+  document.querySelectorAll('.btn').forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      var r = btn.getBoundingClientRect();
+      var d = Math.max(r.width, r.height);
+      var ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.width = ripple.style.height = d + 'px';
+      ripple.style.left = (e.clientX - r.left - d / 2) + 'px';
+      ripple.style.top = (e.clientY - r.top - d / 2) + 'px';
+      btn.appendChild(ripple);
+      setTimeout(function () { ripple.remove(); }, 650);
+    });
+  });
+
+  /* ---------- confetti burst ---------- */
+  function fireConfetti() {
+    var colors = ['#C9852E', '#E7B978', '#1E5A3E', '#7BA383', '#3E6E8E'];
+    for (var ci = 0; ci < 60; ci++) {
+      var piece = document.createElement('span');
+      piece.className = 'confetti-piece';
+      piece.style.left = (Math.random() * 100) + 'vw';
+      piece.style.background = colors[ci % colors.length];
+      piece.style.animationDuration = (2.2 + Math.random() * 1.6) + 's';
+      piece.style.opacity = 0.75 + Math.random() * 0.25;
+      document.body.appendChild(piece);
+      (function (p) { setTimeout(function () { p.remove(); }, 4200); })(piece);
+    }
+  }
 });
 </script>
 </body>
